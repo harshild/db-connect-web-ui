@@ -111,3 +111,4 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+.gradle/

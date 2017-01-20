@@ -1,1 +1,49 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
+    }
+}
 
+apply plugin:'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+
+repositories {
+    mavenCentral()
+}
+
+
+archivesBaseName  ='db-connect'
+group = 'com.github.harshil'
+version = '0.0.1'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile ("org.springframework.boot:spring-boot-starter-web"){
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile "org.springframework.boot:spring-boot-starter-jetty"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+
+
+    // Webjars
+    compile "org.webjars:bootstrap:3.1.1"
+    compile "org.webjars:angularjs:1.2.16"
+    compile "org.webjars:angular-ui:0.4.0-2"
+    compile "org.webjars:angular-ui-bootstrap:0.10.0-1"
+    compile "org.webjars:jquery:2.1.0-2"
+
+    testCompile("junit:junit")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+jar {
+    baseName = archivesBaseName
+}
