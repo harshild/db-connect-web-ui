@@ -1,6 +1,5 @@
 package com.github.harshil.controller;
 
-import com.github.harshil.controller.models.DatabaseParams;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,23 +22,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class DatabaseConnectionControllerTest {
-    DatabaseParams databaseParams;
 
     @Autowired
     private MockMvc mvc;
 
     @Before
     public void setUp(){
-        databaseParams = new DatabaseParams()
-                .setHostName("")
-                .build();
     }
 
     @Test
     public void testConnectionToDatabase() throws Exception {
 
         mvc.perform(MockMvcRequestBuilders.get("/testcon")
-               // .content(databaseParams)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("true")));
