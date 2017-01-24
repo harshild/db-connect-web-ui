@@ -1,6 +1,5 @@
 package com.github.harshil.controller;
 
-import com.github.harshil.controller.models.DatabaseParams;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
