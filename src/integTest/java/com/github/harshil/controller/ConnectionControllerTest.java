@@ -1,5 +1,7 @@
 package com.github.harshil.controller;
 
+import com.github.harshil.controller.models.DatabaseParams;
+import net.minidev.json.JSONValue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,10 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.embedded.LocalServerPort;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.MultiValueMap;
 
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.util.Collections;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -20,12 +28,15 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class DatabaseConnectionControllerTest {
+public class ConnectionControllerTest {
 
     @LocalServerPort
     private int port;
 
     private URL base;
+    private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
+            MediaType.APPLICATION_JSON.getSubtype(),
+            Charset.forName("utf8"));
 
     @Autowired
     private TestRestTemplate template;
@@ -37,8 +48,13 @@ public class DatabaseConnectionControllerTest {
 
     @Test
     public void testConnectionToDatabase() throws Exception {
-        ResponseEntity<String> response = template.getForEntity(base.toString() + "testcon",
-                String.class);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Accept-Charset", "UTF-8");
+        HttpEntity<DatabaseParams> request = new HttpEntity<>(new DatabaseParams().setHostName("HOST"),headers );
+        ResponseEntity<Boolean> response = template.postForEntity(base.toString() + "testcon",request, Boolean.class);
+
+        assertThat(response.getStatusCode(), equalTo(200));
         assertThat(response.getBody(), equalTo("true"));
     }
 
