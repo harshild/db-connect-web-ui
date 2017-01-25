@@ -1,5 +1,6 @@
 package com.github.harshil.resource;
 
+import com.github.harshil.constant.URIConstants;
 import com.github.harshil.model.DBCredential;
 import net.minidev.json.JSONValue;
 import org.junit.Before;
@@ -46,7 +47,7 @@ public class ConnectionResourceTest {
 
     @Test
     public void testConnectionToDatabase() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.post("/testcon")
+        mvc.perform(MockMvcRequestBuilders.post(URIConstants.TEST_CONNECTION_URI)
                 .content(dbCredentialString)
                 .contentType(contentType)
                 .accept(MediaType.APPLICATION_JSON))

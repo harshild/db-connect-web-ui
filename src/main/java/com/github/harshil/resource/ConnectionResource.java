@@ -1,5 +1,6 @@
 package com.github.harshil.resource;
 
+import com.github.harshil.constant.URIConstants;
 import com.github.harshil.model.DBCredential;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ConnectionResource {
 
-    @RequestMapping(value = "/testcon", method = RequestMethod.POST )
+    @RequestMapping(value = URIConstants.TEST_CONNECTION_URI, method = RequestMethod.POST )
     public boolean testConnectionToDatabase(@RequestBody DBCredential dbCredential){
         return true;
     }

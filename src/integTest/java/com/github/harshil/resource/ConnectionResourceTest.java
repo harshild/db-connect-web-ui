@@ -1,5 +1,6 @@
 package com.github.harshil.resource;
 
+import com.github.harshil.constant.URIConstants;
 import com.github.harshil.model.DBCredential;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +43,7 @@ public class ConnectionResourceTest {
 
     @Before
     public void setUp() throws Exception {
-        this.base = new URL("http://localhost:" + port + "/");
+        this.base = new URL("http://localhost:" + port);
         dbCredential = new DBCredential();
         dbCredential.setHostName("HOST");
     }
@@ -53,7 +54,7 @@ public class ConnectionResourceTest {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept-Charset", "UTF-8");
         HttpEntity<DBCredential> request = new HttpEntity<>(dbCredential,headers );
-        ResponseEntity<Boolean> response = template.postForEntity(base.toString() + "testcon",request, Boolean.class);
+        ResponseEntity<Boolean> response = template.postForEntity(base.toString() + URIConstants.TEST_CONNECTION_URI,request, Boolean.class);
 
         assertThat(response.getBody(), equalTo(true));
         assertThat(response.getStatusCode().value(), equalTo(200));
