@@ -1,6 +1,6 @@
-package com.github.harshil.controller;
+package com.github.harshil.resource;
 
-import com.github.harshil.controller.models.DatabaseParams;
+import com.github.harshil.model.DBCredential;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +25,9 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ConnectionControllerTest {
+public class ConnectionResourceTest {
+
+    DBCredential dbCredential;
 
     @LocalServerPort
     private int port;
@@ -41,6 +43,8 @@ public class ConnectionControllerTest {
     @Before
     public void setUp() throws Exception {
         this.base = new URL("http://localhost:" + port + "/");
+        dbCredential = new DBCredential();
+        dbCredential.setHostName("HOST");
     }
 
     @Test
@@ -48,11 +52,11 @@ public class ConnectionControllerTest {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept-Charset", "UTF-8");
-        HttpEntity<DatabaseParams> request = new HttpEntity<>(new DatabaseParams().setHostName("HOST"),headers );
+        HttpEntity<DBCredential> request = new HttpEntity<>(dbCredential,headers );
         ResponseEntity<Boolean> response = template.postForEntity(base.toString() + "testcon",request, Boolean.class);
 
-        assertThat(response.getStatusCode(), equalTo(200));
-        assertThat(response.getBody(), equalTo("true"));
+        assertThat(response.getBody(), equalTo(true));
+        assertThat(response.getStatusCode().value(), equalTo(200));
     }
 
 }
