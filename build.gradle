@@ -1,13 +1,18 @@
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
+        classpath "gradle.plugin.com.craigburke.gradle:karma-gradle:1.4.4"
     }
 }
 
-apply plugin:'java'
+apply plugin: "com.craigburke.karma"
+apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
@@ -71,4 +76,14 @@ dependencies {
 
 jar {
     baseName = archivesBaseName
+}
+
+karma {
+    basePath = 'src/main/resources/static' // <1>
+    colors = true // <2>
+    profile 'angularJS' // <3>
+
+    browsers = ['PhantomJS'] // <4>
+    frameworks = ['jasmine'] // <5>
+    reporters = ['junit'] // <6>
 }
