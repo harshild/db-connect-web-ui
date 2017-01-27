@@ -1,17 +1,12 @@
 buildscript {
     repositories {
         mavenCentral()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
-        classpath "gradle.plugin.com.craigburke.gradle:karma-gradle:1.4.4"
     }
 }
 
-apply plugin: "com.craigburke.karma"
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
@@ -57,13 +52,6 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-jetty"
     compile "org.springframework.boot:spring-boot-starter-actuator"
 
-
-    // Webjars
-    compile "org.webjars:bootstrap:3.1.1"
-    compile "org.webjars:angularjs:1.2.16"
-    compile "org.webjars:angular-ui:0.4.0-2"
-    compile "org.webjars:angular-ui-bootstrap:0.10.0-1"
-    compile "org.webjars:jquery:2.1.0-2"
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.6'
 
 
@@ -76,14 +64,4 @@ dependencies {
 
 jar {
     baseName = archivesBaseName
-}
-
-karma {
-    basePath = 'src/main/resources/static' // <1>
-    colors = true // <2>
-    profile 'angularJS' // <3>
-
-    browsers = ['PhantomJS'] // <4>
-    frameworks = ['jasmine'] // <5>
-    reporters = ['junit'] // <6>
 }
