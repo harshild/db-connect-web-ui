@@ -65,3 +65,14 @@ dependencies {
 jar {
     baseName = archivesBaseName
 }
+
+
+task karmaRun(type:Exec){
+
+    if (System.getProperty('os.name').toLowerCase().contains('windows')) {
+        commandLine 'cmd', '/c', 'karma','start'
+    } else {
+        commandLine 'karma','start'
+    }
+
+}
