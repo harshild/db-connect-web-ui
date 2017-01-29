@@ -5,4 +5,8 @@ var app = angular.module('dbapp.homectrl',[])
         $scope.add = function(a){
             return a + a;
         }
+
+        $scope.selectedConnector = "";
+
+        $scope.availableConnectors = ['MySQL'];
 });

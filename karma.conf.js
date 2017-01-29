@@ -17,9 +17,7 @@ module.exports = function(config) {
     files: [
       'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js',
       'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js',
-      'home/home.controller.js',
-      'home-controller-spec.js',
-      'main.js'
+      ''
     ],
 
 

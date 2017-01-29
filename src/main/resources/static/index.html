@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" class="en" ng-app="dbapp">
+<html lang="en" ng-app="dbapp">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="description" content="Spring Music">
@@ -12,14 +12,15 @@
 </head>
 
 <body>
-<h1>Main App</h1>
-<div ng-view></div>
+<div class="container">
+    <h1 class="page-header">DB Connect</h1>
+    <div ng-view></div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-route.js"></script>
 
-<script type="text/javascript" src="main.js"></script>
-<script type="text/javascript" src="home/home.controller.js"></script>
-
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="home/home.controller.js"></script>
+</div>
 </body>
 </html>
