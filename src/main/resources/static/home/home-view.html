@@ -1,9 +1,30 @@
-<div class="row"  ng-app="login" ng-controller='homectrl'>
-    <div class="col-md-4">
-        Database Type :
-        <select ng-model="selectedConnector">
-            <option selected="selected" disabled> --- select ----</option>
-            <option ng-repeat="x in availableConnectors" value="{{x}}">{{x}}</option>
-        </select>
-    </div>
+<div class="panel" ng-controller='homectrl'>
+    <form class="form-horizontal">
+
+        <div class="form-group form-inline">
+            <span selected="selected" > Database Type </span>
+
+            <select class="form-control" ng-model="selectedConnector">
+                <option ng-repeat="x in availableConnectors" value="{{x}}">{{x}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="sr-only" for="inputHost">Host Name/IP</label>
+            <input type="email" class="form-control" id="inputHost" placeholder="Host Name/IP">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="inputUser">User Name</label>
+            <input type="password" class="form-control" id="inputUser" ng-model="userName" placeholder="User">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" ng-model="password" placeholder="Password">
+        </div>
+        <div class="form-group form-inline">
+
+        <button type="submit" class="btn btn-default form-control">Submit</button>
+        <button type="submit" class="btn btn-danger form-control">Reset</button>
+        </div>
+    </form>
 </div>
