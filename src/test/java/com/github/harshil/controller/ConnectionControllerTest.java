@@ -20,14 +20,15 @@ public class ConnectionControllerTest {
 
     @Test
     public void validateDatabaseCredentialsAsPASSIfMandatoryFieldsAreSpecified() throws Exception {
-        dbCredential = new DBCredential();
-        dbCredential.setHostName("HOST");
+        dbCredential = DBCredential.builder()
+                .hostName("HOST")
+                .build();
         assertTrue(connectionController.validateDatabaseCredentials(dbCredential));
     }
 
     @Test
     public void validateDatabaseCredentialsAsFAILIfMandatoryFieldsAreNOTSpecified() throws Exception {
-        dbCredential = new DBCredential();
+        dbCredential = DBCredential.builder().build();
         assertFalse(connectionController.validateDatabaseCredentials(dbCredential));
     }
 

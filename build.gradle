@@ -55,6 +55,7 @@ dependencies {
 
 
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.6'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.12'
 
 
     testCompile("junit:junit")
@@ -70,12 +71,15 @@ jar {
 
 
 task karmaRun(type:Exec){
-
+    workingDir '.'
     if (System.getProperty('os.name').toLowerCase().contains('windows')) {
-        commandLine 'cmd', '/c', 'karma','start'
+        println 'WINDOWS BUILD'
+        commandLine 'cmd','/c','karma','start'
     } else {
         commandLine 'karma','start'
     }
+
+
 
 }
 

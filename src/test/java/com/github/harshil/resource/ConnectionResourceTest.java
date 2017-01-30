@@ -40,8 +40,9 @@ public class ConnectionResourceTest {
 
     @Before
     public void setUp(){
-        dbCredential = new DBCredential();
-        dbCredential.setHostName("HOST");
+        dbCredential = DBCredential.builder()
+                .hostName("HOST")
+                .build();
         dbCredentialString = JSONValue.toJSONString(dbCredential);
     }
 

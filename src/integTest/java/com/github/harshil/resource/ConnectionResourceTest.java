@@ -44,15 +44,15 @@ public class ConnectionResourceTest {
     @Before
     public void setUp() throws Exception {
         this.base = new URL("http://localhost:" + port);
-        dbCredential = new DBCredential();
-        dbCredential.setHostName("HOST");
+        dbCredential = DBCredential.builder()
+        .hostName("HOST").build();
     }
 
     @Test
     public void testConnectionToDatabase() throws Exception {
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Accept-Charset", "UTF-8");
+        headers.add(HttpHeaders.ACCEPT_CHARSET, "UTF-8");
         HttpEntity<DBCredential> request = new HttpEntity<>(dbCredential,headers );
         ResponseEntity<Boolean> response = template.postForEntity(base.toString() + URIConstants.TEST_CONNECTION_URI,request, Boolean.class);
 
