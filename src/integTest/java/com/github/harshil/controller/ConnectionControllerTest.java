@@ -1,4 +1,4 @@
-package com.github.harshil.resource;
+package com.github.harshil.controller;
 
 import com.github.harshil.constant.URIConstants;
 import com.github.harshil.model.DBCredential;
@@ -26,7 +26,7 @@ import static org.junit.Assert.assertThat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ConnectionResourceTest {
+public class ConnectionControllerTest {
 
     DBCredential dbCredential;
 
