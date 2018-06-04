@@ -7,4 +7,6 @@ import com.github.harshil.model.DBCredential;
  */
 public interface DataConnector {
     String createJdbcURL(DBCredential databaseParams);
+
+    boolean testConnection(String jdbcUrl);
 }

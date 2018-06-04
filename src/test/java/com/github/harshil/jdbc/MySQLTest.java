@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by W18NM36 on 1/30/2017.
@@ -34,5 +36,16 @@ public class MySQLTest {
         String actualURL = mySQLConnector.createJdbcURL(databaseParams);
 
         assertEquals(expectedURL,actualURL);
+    }
+
+    @Test
+    public void itShouldBeAbleToTestIfConnectionIsAvailable(){
+        String incorrectUrl = "jdbc:mysql://user:pass@Host:22/Test";
+        boolean result = mySQLConnector.testConnection(incorrectUrl);
+        assertFalse(result);
+
+        String correctUrl = "jdbc:mysql://anonymous@ensembldb.ensembl.org:3306";
+        result = mySQLConnector.testConnection(correctUrl);
+        assertTrue(result);
     }
 }
